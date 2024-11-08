@@ -115,5 +115,11 @@ def status_nivel():
     """
     return render_template_string(html_template, nivel_agua=ultimo_nivel_agua)
 
+# Novo endpoint para obter o último nível de água
+@app.route('/obter_nivel_agua', methods=['GET'])
+def obter_nivel_agua():
+    global ultimo_nivel_agua
+    return jsonify({'nivel_agua': ultimo_nivel_agua if ultimo_nivel_agua is not None else 0})
+
 if __name__ == '__main__':
     app.run(debug=True)
